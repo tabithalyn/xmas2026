@@ -493,18 +493,18 @@ export default function Wishlist() {
           <h2 className="font-display font-normal text-[34px] text-[#203c32] m-0">Welcome back</h2>
           <p className="font-display font-italic text-[#7a8176] text-[13px] mt-1.75 mx-0 mb-5.5">Sign in to tend to your wishlist.</p>
 
-          <label className="flex flex-direction-column gap-1.75 text-left text-[#586657] text-[11px] font-bold mb-3.5">
-            <span className="mt-3 w-[20%] text-left">EMAIL</span>
+          <label className="flex flex-direction-column gap-1.75 text-left text-[#586657] text-[12px] mb-3.5">
+            <span className="mt-3 w-[20%] text-left font-bold">EMAIL</span>
             <input
               type="email"
               required value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-[80%] border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+              className="w-[80%] border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
             />
           </label>
 
-          <label className="flex flex-direction-column gap-1.75 text-left text-[#586657] text-[11px] font-bold mb-3.5">
+          <label className="flex flex-direction-column gap-1.75 text-left text-[#586657] text-[12px] font-bold mb-3.5">
             <span className="mt-3 w-[20%] text-left">PASSWORD</span>
             <input
               type="password"
