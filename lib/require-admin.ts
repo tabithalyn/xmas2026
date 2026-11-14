@@ -8,5 +8,8 @@ export async function requireAdmin() {
 
   if (!session) return false;
 
-  return session.user.email === process.env.ADMIN_EMAIL;
+  return (
+    session.user.email.toLowerCase() ===
+    process.env.ADMIN_EMAIL?.toLowerCase()
+  );
 }
