@@ -289,20 +289,20 @@ export default function Wishlist() {
   }
 
   return (
-    <main className="min-h-screen max-w-screen my-0 mx-auto overflow-hidden">
-      <div className="h-9.75 w-screen bg-[#203c32] text-[#ebe2d2] flex items-center justify-between py-0 px-[5.5%] text-[9px] tracking-wider font-bold">
+    <main className="min-h-screen w-screen">
+      <div className="min-h-9 w-full bg-[#203c32] text-[#ebe2d2] flex items-center justify-between gap-2 py-2 px-4 sm:px-[5.5%] text-[9px] tracking-wider font-bold">
         <span>✳ &nbsp; A LITTLE CHRISTMAS MAGIC &nbsp; ✳</span><span>THE 2026 EDITION</span>
       </div>
-      <header className="relative text-center pt-18.75 pr-6 pb-14.5 bg-radial-[at 50% 0%,rgba(169,181,160,.24),transparent 62%),#f4efe5]; overflow-hidden">
+      <header className="relative text-center px-4 pt-16 sm:pt-20 pb-12 sm:pb-14 bg-radial-[at 50% 0%,rgba(169,181,160,.24),transparent 62%),#f4efe5]; overflow-hidden">
         <div className="absolute text-[#b69a70] opacity-40 text-[34px] left-[23%] top-[25%]">✳</div>
         <div className="absolute text-[#b69a70] opacity-40 right-[24%] top-[24%] text-[42px]">✧</div>
         <div className="flex items-center justify-center gap-3.25 text-[#9a8059] text-[9px] tracking-wider font-extrabold">
           <span className="h-px w-8 bg-[#b69a70]" /> THE MOST WONDERFUL TIME OF THE YEAR <span className="h-px w-8 bg-[#b69a70]" />
         </div>
-        <h1 className="font-display text-[clamp(43px,6vw,76px)] tracking-tight leading-6] mt-21px] mr-0 mb-3.5 text-[#203c32]">
+        <h1 className="font-display text-[clamp(36px,6vw,76px)] tracking-tight leading-tight mt-5 mb-4 text-[#203c32]">
           My Christmas <span className="font-medium text-[#873f3d] italic font-display">Wishlist</span>
         </h1>
-        <p className="font-display italic text-[#69766a] text-[17px] my-0 mx-auto max-w-135 leading-8">
+        <p className="font-display italic text-[#69766a] text-[17px] md:text-[17px] lg:text-[18px] xs:text-[14px] my-0 mx-auto max-w-135 leading-8">
           Some things that would make this season extra special.
         </p>
         <div className="flex items-center justify-center gap-3.25 text-[#b69a70] mt-6.5"><span className="h-px w-8 bg-[#b69a70]" />
@@ -310,28 +310,28 @@ export default function Wishlist() {
         </div>
       </header>
 
-      <section className="w-[75%] my-0 mx-auto pt-5.5 pr-10.5 pb-12">
-        <div className="flex items-end justify-between pt-6.5 pr-0 pb-6.75 border-b border-b-[#dcd3c4]">
+      <section className="w-full max-w-7xl mx-auto pt-5.5 pr-10.5 pb-12 sm:px-6 lg:px-8 xs:px-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-6.5 pb-6.75 border-b border-b-[#dcd3c4]">
           <div>
             <p className="text-[9px] tracking-wide font-extrabold text-[#9a8059] mt-0 mr-0 mb-2.25">A CURATED COLLECTION</p>
-            <h2 className="font-display font-normal text-[34px] text-[#203c32] m-0">On my wish list <span className="font-serif text-[#b69a70] text-[20px] align-top">✳</span></h2>
+            <h2 className="font-display font-normal text-[30px] sm:text-[34px] text-[#203c32] m-0">On my wish list <span className="font-serif text-[#b69a70] text-[20px] align-top">✳</span></h2>
             <p className="text-[#7d8278] text-[12px] mt-1.75">
               {items.length} {items.length === 1 ? 'thoughtful find' : 'thoughtful finds'} for the season
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
             {adminMode && session && (
               <button className="inline-flex items-center justify-center gap-2 border border-[#203c32] rounded-[99px] bg-[#203c32] text-[#fff9ee] py-2.75 px-4.75 text-[12px] font-bold transition-all hover:bg-[#315447] hover:translate-u-[-1px] disabled:opacity-55 disabled:cursor-not-allowed disabled:transform-none" onClick={openNew}>
                 <Plus size={16}/> Add a wish
               </button>
             )}
             {adminMode && session ? (
-              <button className="inline-flex items-center gap-2 border border-[#cfc5b5] rounded-[99px] bg-transparent text-[#526256] py-2.5 px-4 text-[11px] font-bold transition-all hover:bg-[#e9e3d8]" onClick={signOut}>
+              <button className="inline-flex items-center gap-2 border border-[#cfc5b5] rounded-[99px] bg-transparent text-[#526256] py-2.5 px-4 text-[11px] xs:text-[9px] font-bold transition-all hover:bg-[#e9e3d8]" onClick={signOut}>
                 <LogOut size={15} /> Sign out
               </button>
             ) : (
-              <button className="inline-flex items-center gap-2 border border-[#cfc5b5] rounded-[99px] bg-transparent text-[#526256] py-2.5 px-4 text-[11px] font-bold transition-all hover:bg-[#e9e3d8]" onClick={startAdmin}>
+              <button className="inline-flex items-center gap-2 border border-[#cfc5b5] rounded-[99px] bg-transparent text-[#526256] py-2.5 px-4 xs:py-1.5 xs:px-3 text-[11px] xs:text-[9px] font-bold transition-all hover:bg-[#e9e3d8]" onClick={startAdmin}>
                 <LockKeyhole size={15} /> Admin
               </button>
             )}
@@ -362,14 +362,19 @@ export default function Wishlist() {
           </div>
         )}
 
-        <div className="flex items-end justify-between gap-6 pt-6.75 pb-5.5">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 py-6">
           <div>
             <div className="text-[10px] tracking-wide text-[#8b8b7c] font-extrabold mb-2.75">SHOP BY STORE</div>
-            <div className="flex flex-wrap gap-1.75 justify-end text-sm">
+            <div className="w-full lg:flex-1 flex flex-wrap gap-1.75 justify-end xs:justify-start text-sm">
               {stores.map(store => (
                 <button
                   key={store}
-                  className={`border border-[#d8d0c2] bg-transparent rounded-[99px] py-2.25 px-3.75 text-[#526256] font-normal transition-all whitespace-nowrap hover:border-[#819182] hover:bg-[#ece9df] ${activeStore === store ? "bg-[#203c32] border-[#203c32] text-[#526256] hover:bg-[#315447] hover:border-[#315447]" : ""}`}
+                  className={`border rounded-[99px] py-2.25 px-3.75 font-normal transition-all whitespace-nowrap
+                    ${
+                      activeStore === store
+                        ? "bg-[#203c32] border-[#203c32] text-[#fff9ee]! hover:bg-[#315447]"
+                        : "bg-transparent border-[#d8d0c2] text-[#526256] hover:border-[#819182] hover:bg-[#ece9df]"
+                    }`}
                   onClick={() => setActiveStore(store)}
                 >
                   {store === "All" ? "All stores" : store}
@@ -378,34 +383,46 @@ export default function Wishlist() {
             </div>
           </div>
 
-          <div className="text-right mb-2.75">
+          <div className="w-full lg:w-auto lg:text-right">
             <div className="text-[10px] tracking-wide text-[#8b8b7c] mb-3 font-extrabold">SORT BY PRICE</div>
             <div className="flex flex-wrap gap-1.75">
               <button
-                className={`border border-[#d8d0c2] bg-transparent rounded-[99px] py-2.25 px-3.75 text-[#526256] text-[11px] font-normal transition-all whitespace-nowrap flex items-center gap-1.75 hover:bg-[#315447] hover:border-[#819182] ${sort === "asc" ? "bg-[#203c32] border-[#203c32] text-[#fff9ee]" : ""}`}
+                className={`border rounded-[99px] py-2.25 px-3.75 text-[11px] font-normal transition-all whitespace-nowrap flex items-center gap-1.75
+                  ${
+                    sort === "asc"
+                      ? "bg-[#203c32] border-[#203c32] text-[#fff9ee]"
+                      : "bg-transparent border-[#d8d0c2] text-[#526256] hover:bg-[#ece9df]"
+                  }`}
                 onClick={() => setSort(sort === "asc" ? "none" : "asc")}
               >
-                <ArrowUpWideNarrow size={15}/> <span className="text-[12px] font-medium">Lowest first</span>
+                <ArrowUpWideNarrow size={15}/>
+                <span className="text-[12px] font-medium">Lowest first</span>
               </button>
               <button
-                className={`border border-[#d8d0c2] bg-transparent rounded-[99px] py-2.25 px-3.75 text-[#526256] text-[11px] font-normal transition-all whitespace-nowrap flex items-center gap-1.75 ${sort === "desc" ? "bg-[#203c32] border-[#203c32] text-[#fff9ee]" : ""}`}
+                className={`border rounded-[99px] py-2.25 px-3.75 text-[11px] font-normal transition-all whitespace-nowrap flex items-center gap-1.75
+                  ${
+                    sort === "desc"
+                      ? "bg-[#203c32] border-[#203c32] text-[#fff9ee]"
+                      : "bg-transparent border-[#d8d0c2] text-[#526256] hover:bg-[#ece9df]"
+                  }`}
                 onClick={() => setSort(sort === "desc" ? "none" : "desc")}
               >
-                <ArrowDownWideNarrow size={15}/> <span className="text-[12px] font-medium">Highest first</span>
+                <ArrowDownWideNarrow size={15}/>
+                <span className="text-[12px] font-medium">Highest first</span>
               </button>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-3 pb-4 border-t border-t-[#dfd7c9] text-[#9a9588] text-[9px] tracking-wide font-extrabold">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 pb-4 border-t border-t-[#dfd7c9] text-[#9a9588] text-[9px] tracking-wide font-extrabold">
           <span>SHOWING {visibleItems.length} OF {items.length} WISHES</span>
-          <label className="flex items-center gap-2 text-[#7b8277] text-[12px] border-b border-b-[#d2c9b9] pt-1.25 font-normal">
+          <label className="flex items-center gap-2 w-full sm:w-auto text-[#7b8277] text-[12px] border-b border-b-[#d2c9b9] pt-1.5 font-normal">
             <Search size={15}/>
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Find a wish…"
-              className="border-0 outline-0 bg-transparent text-[#203c32] w-36.25 tracking-normal"
+              className="border-0 outline-0 bg-transparent text-[#203c32] w-full sm:w-44 tracking-normal py-1"
             />
           </label>
         </div>
@@ -426,15 +443,16 @@ export default function Wishlist() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-y-6.25 gap-x-5">
-              {visibleItems.map((item, index) => <article className="min-w-0 bg-[#f8f5ee] border border-[#e5ded2] transition-[transform,box-shadow] duration-250 hover:-translate-y-1 hover:shadow-[0 12px 28px rgba(43,58,46,.08)] hover:scale-[(1.035)]" key={item.id}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+              {visibleItems.map((item, index) => <article className="min-w-0 bg-[#f8f5ee] border border-[#e5ded2] transition-[transform,box-shadow] duration-250 hover:shadow-[0 12px 28px rgba(43,58,46,.08)]" key={item.id}>
                 <div className="relative aspect-4/4.5 bg-[#e9e4d9] overflow-hidden">
                   {item.image_url ? (
                     <Image
-                      className="w-full h-full object-cover block transform-[.5s] hover:scale-[(1.035)]"
+                      className="w-full h-full object-cover block"
                       src={item.image_url}
                       alt={item.name}
                       loading="lazy"
+                      fill
                       onError={e => { e.currentTarget.style.display = "none" }}
                     />
                   ) : (
@@ -456,18 +474,25 @@ export default function Wishlist() {
                 )}
               </div>
 
-              <div className="pt-4.25 pr-4.25 pb-4.75">
-                <div className="text-[9px] tracking-wider uppercase text-[#9a8059] font-extrabold p-1">{item.store}</div>
-                <h3 className="font-display font-normal text-[#273d33] text-[19px] leading-7 mt-2 mx-0 mb-1.75 p-1">{item.name}</h3>
-                <div className="text-[15px] font-extrabold text-[#203c32]">{formatPrice(item.price)}</div>
-                {item.preference && <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px] p-1">
+              <div className="p-4.75 sm:p-5.5">
+                <div className="text-[9px] tracking-wider uppercase text-[#9a8059] font-extrabold">
+                  {item.store}
+                </div>
+                <h3 className="font-display font-normal text-[#273d33] text-base sm:text-[19px] leading-7 mt-2 mb-1.75">
+                  {item.name}
+                </h3>
+                <div className="text-[15px] font-extrabold text-[#203c32] ml-2">
+                  {formatPrice(item.price)}
+                </div>
+                {item.preference && <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px]">
                   <span>
                     <b className="font-extrabold text-[#44595b] mr-1">Size/Colour</b>
                   </span>
                 </div>}
+                <div className="border-t border-t-[#b1b7ad] mt-3 flex items-center justify-center">
                 {item.product_url ? (
                   <a
-                    className="inline-flex items-center gap-1.75 mt-4.25 text-[#873f3d] text-[12px] tracking-widest font-extrabold hover:text-[#203c32] p-1"
+                    className="inline-flex items-center gap-1.75 mt-4.25 text-[#873f3d] text-[12px] tracking-widest font-extrabold hover:text-[#203c32]"
                     href={item.product_url}
                     target="_blank"
                     rel="noreferrer"
@@ -479,6 +504,7 @@ export default function Wishlist() {
                     PRODUCT LINK NOT ADDED
                   </span>
                 )}
+                </div>
               </div>
             </article>)}
           </div>)
@@ -496,7 +522,7 @@ export default function Wishlist() {
             if (e.target === e.currentTarget) setAuthOpen(false)
           }}
         >
-        <form className="relative bg-[#f8f5ee] border border-[#ded5c6] rounded-xl p-8 w-[min(100%,660px)] max-h-[calc(100vh - 40px)] overflow-y-auto shadow-[0 24px 80px rgba(0,0,0,.2)] w-[min(100%,410px)] text-center" onSubmit={signIn}>
+        <form className="relative bg-[#f8f5ee] border border-[#ded5c6] rounded-xl p-5 sm:p-8 w-full max-w-102.5 max-h-[calc(100vh-40px)] overflow-y-auto shadow-[0_24px_80px_rgba(0,0,0,0.2)] text-center" onSubmit={signIn}>
           <button
             type="button"
             className="absolute right-4.25 top-4.25 border-none bg-transparent text-[#667266] p-1.25"
@@ -513,13 +539,13 @@ export default function Wishlist() {
           <p className="font-display font-italic text-[#7a8176] text-[13px] mt-1.75 mx-0 mb-5.5">Sign in to tend to your wishlist.</p>
 
           <label className="flex flex-direction-column gap-1.75 text-left text-[#586657] text-[12px] mb-3.5">
-            <span className="mt-3 w-[20%] text-left font-bold">EMAIL</span>
+            <span className="mt-3 text-left font-bold">EMAIL</span>
             <input
               type="email"
               required value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-[80%] border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+              className="w-full border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
             />
           </label>
 
@@ -553,7 +579,7 @@ export default function Wishlist() {
             if (e.target === e.currentTarget) setEditorOpen(false)
           }}
         >
-          <form className="relative bg-[#f8f5ee] border border-[#ded5c6] rounded-xl p-8 w-[min(100%,660px)] max-h-[calc(100vh - 40px)] overflow-y-auto shadow-[0 24px 80px rgba(0,0,0,.2)] editor-modal" onSubmit={saveItem}>
+          <form className="relative bg-[#f8f5ee] border border-[#ded5c6] rounded-xl p-5 sm:p-8 w-full max-w-165 max-h-[calc(100vh-40px)] overflow-y-auto shadow-[0_24px_80px_rgba(0,0,0,0.2)]" onSubmit={saveItem}>
             <button
               type="button"
               className="absolute right-4.25 top-4.25 border-none bg-transparent text-[#667266] p-1.25"
@@ -565,8 +591,8 @@ export default function Wishlist() {
             <p className="text-[9px] tracking-wide font-extrabold text-[#9a8059] mt-0 mr-0 mb-2.25">THE WISH LIST</p>
             <h2>{editingId ? "Edit your wish" : "Add a new wish"}</h2>
             <p className="font-display font-italic text-[#7a8176] text-[13px] mt-1.75 mx-0 mb-5.5">A few details to make gift-giving a little easier.</p>
-            <div className="grid grid-cols-1 gap-y-0 gap-x-3.5">
-              <label className="col-span-2">Product Name
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label className="sm:col-span-2">Product Name
                 <input
                   required
                   value={draft.name}
@@ -596,7 +622,7 @@ export default function Wishlist() {
                   className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
-              <label className="col-span-2">Product Image URL
+              <label className="sm:col-span-2">Product Image URL
                 <input
                   type="url"
                   value={draft.image_url ?? ""}
@@ -605,7 +631,7 @@ export default function Wishlist() {
                   className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
-              <label className="col-span-2">Product Page URL
+              <label className="sm:col-span-2">Product Page URL
                 <input
                   type="url"
                   value={draft.product_url ?? ""}
