@@ -484,11 +484,13 @@ export default function Wishlist() {
                 <div className="text-[15px] font-extrabold text-[#203c32] ml-2">
                   {formatPrice(item.price)}
                 </div>
-                {item.preference && <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px]">
+                <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px]">
                   <span>
-                    <b className="font-extrabold text-[#44595b] mr-1">Size/Colour</b>
+                    {item.preference && <b className="font-extrabold text-[#44595b] mr-1">
+                      {item.preference}
+                    </b>}
                   </span>
-                </div>}
+                </div>
                 <div className="border-t border-t-[#b1b7ad] mt-3 flex items-center justify-center">
                 {item.product_url ? (
                   <a
