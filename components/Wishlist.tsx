@@ -445,25 +445,25 @@ export default function Wishlist() {
               </div>
 
               <div className="pt-4.25 pr-4.25 pb-4.75">
-                <div className="text-[9px] tracking-wider uppercase text-[#9a8059] font-extrabold">{item.store}</div>
-                <h3 className="font-display font-normal text-[#273d33] text-[19px] leading-7 mt-2 mx-0 mb-1.75">{item.name}</h3>
+                <div className="text-[9px] tracking-wider uppercase text-[#9a8059] font-extrabold p-1">{item.store}</div>
+                <h3 className="font-display font-normal text-[#273d33] text-[19px] leading-7 mt-2 mx-0 mb-1.75 p-1">{item.name}</h3>
                 <div className="text-[15px] font-extrabold text-[#203c32]">{formatPrice(item.price)}</div>
-                {item.preference && <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px]">
+                {item.preference && <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px] p-1">
                   <span>
                     <b className="font-extrabold text-[#44595b] mr-1">Size/Colour</b>
                   </span>
                 </div>}
                 {item.product_url ? (
                   <a
-                    className="inline-flex items-center gap-1.75 mt-4.25 text-[#873f3d] text-[9px] tracking-widest font-extrabold hover:text-[#203c32]"
+                    className="inline-flex items-center gap-1.75 mt-4.25 text-[#873f3d] text-[12px] tracking-widest font-extrabold hover:text-[#203c32] p-1"
                     href={item.product_url}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    VIEW THE DETAILS <ExternalLink size={13}/>
+                    LINK TO PRODUCT <ExternalLink size={13}/>
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-1.75 mt-4.25 text-[9px] tracking-extrawide font-extrabold hover:text-[#203c32] text-[#aaa395]">
+                  <span className="inline-flex items-center gap-1.75 mt-4.25 text-[9px] tracking-extrawide font-extrabold hover:text-[#203c32] text-[#aaa395] p-1">
                     PRODUCT LINK NOT ADDED
                   </span>
                 )}
