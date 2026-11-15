@@ -50,7 +50,7 @@ export async function POST(request: Request) {
       !store.trim() ||
       !Number.isSafeInteger(Number(price)) ||
       Number(price) < 0 ||
-      typeof product_url !== "string" ||
+      typeof product_url !== "string" && product_url !== null ||
       !product_url.trim()
     ) {
       return NextResponse.json(

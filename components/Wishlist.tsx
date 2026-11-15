@@ -152,9 +152,11 @@ export default function Wishlist() {
     if (
       !draft.name.trim() ||
       !draft.store.trim() ||
+      !draft.product_url.trim() ||
       !Number.isFinite(Number(draft.price)) ||
       Number(draft.price) < 0
     ) {
+      setNotice("Please provide a name, store, valid price, and product URL.");
       return;
     }
 
@@ -321,9 +323,6 @@ export default function Wishlist() {
             <span className="flex items-center gap-2">
               <LockKeyhole size={15}/> You're in edit mode. Changes are saved to your wishlist.
             </span>
-            <button onClick={openNew} className="inline-flex items-center gap-2 border border-[#cfc5b5] rounded-[99px] bg-transparent text-[#526256] py-2.5 px-4 text-[11px] font-bold transition-all hover:bg-[#e9e3d8]">
-              <Plus size={15}/> Add item
-            </button>
           </div>
         )}
 
@@ -522,7 +521,7 @@ export default function Wishlist() {
             type="submit"
             className="inline-flex items-center justify-center gap-2 border border-[#203c32] rounded-[99px] bg-[#203c32] text-[#fff9ee] py-2.75 px-4.75 text-[12px] font-bold transition-all w-full mt-1.25 hover:bg-[#315447] hover:translate-u-[-1px]"
           >
-            Sign in
+            Sign In
           </button>
         </form>
       </div>)}
@@ -547,23 +546,25 @@ export default function Wishlist() {
             <h2>{editingId ? "Edit your wish" : "Add a new wish"}</h2>
             <p className="font-display font-italic text-[#7a8176] text-[13px] mt-1.75 mx-0 mb-5.5">A few details to make gift-giving a little easier.</p>
             <div className="grid grid-cols-1 gap-y-0 gap-x-3.5">
-              <label className="col-span-2">Product name *
+              <label className="col-span-2">Product Name
                 <input
                   required
                   value={draft.name}
                   onChange={e => setDraft({...draft, name: e.target.value})}
                   placeholder="e.g. Cashmere sweater"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
-              <label>Store *
+              <label>Store
                 <input
                   required
                   value={draft.store}
                   onChange={e => setDraft({...draft, store: e.target.value})}
                   placeholder="e.g. Simons"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
-              <label>Price *
+              <label>Price
                 <input
                   required
                   type="number"
@@ -572,22 +573,25 @@ export default function Wishlist() {
                   value={draft.price || ""}
                   onChange={e => setDraft({...draft, price: Number(e.target.value)})}
                   placeholder="0.00"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
-              <label className="col-span-2">Product image URL
+              <label className="col-span-2">Product Image URL
                 <input
                   type="url"
                   value={draft.image_url ?? ""}
                   onChange={e => setDraft({...draft, image_url: e.target.value})}
                   placeholder="https://…"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
-              <label className="col-span-2">Product page URL
+              <label className="col-span-2">Product Page URL
                 <input
                   type="url"
                   value={draft.product_url ?? ""}
                   onChange={e => setDraft({...draft, product_url: e.target.value})}
                   placeholder="https://…"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
               <label>Preferences
@@ -595,6 +599,7 @@ export default function Wishlist() {
                   value={draft.preference ?? ""}
                   onChange={e => setDraft({...draft, preference: e.target.value})}
                   placeholder="e.g. Medium, Brown..."
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
             </div>
@@ -612,7 +617,7 @@ export default function Wishlist() {
                 className="inline-flex items-center justify-center gap-2 border border-[#203c32] rounded-[99px] bg-[#203c32] text-[#fff9ee] py-2.75 px-4.75 text-[12px] font-bold transition-all hover:bg-[#315447] hover:translate-u-[-1px]"
                 disabled={saving}
               >
-                {saving ? "Saving…" : editingId ? "Save changes" : "Add to wishlist"}
+                {saving ? "Saving…" : editingId ? "Save Changes" : "Add to wishlist"}
               </button>
             </div>
           </form>
