@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import { useCallback, useMemo, useState, type SubmitEvent } from "react";
+import { useCallback, useEffect, useMemo, useState, type SubmitEvent } from "react";
 import {
   ArrowDownWideNarrow,
   ArrowUpWideNarrow, 
@@ -54,6 +54,10 @@ export default function Wishlist() {
 
   const { data: session } = authClient.useSession();
 
+  useEffect(() => {
+    setAdminMode(!!session);
+  }, [session]);
+
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-CA", {
       style: "currency",
@@ -61,10 +65,12 @@ export default function Wishlist() {
     }).format(price / 100);
 
   const loadItems = useCallback(async () => {
-    setLoading(true);
     try {
+      setLoading(true);
+
       const res = await fetch(`${API_URL}/wishlist`, {
         credentials: "include",
+        cache: "no-store",
       });
 
       if (!res.ok) {
@@ -83,6 +89,10 @@ export default function Wishlist() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    loadItems();
+  }, [loadItems]);
 
   const stores = useMemo(
     () => [
@@ -256,15 +266,17 @@ export default function Wishlist() {
     }
 
     setAuthOpen(false);
-    setAdminMode(true);
     setPassword("");
     setAuthMessage("");
+    await loadItems();
     setNotice("Welcome back!");
   }
 
   const signOut = async () => {
     await authClient.signOut();
     setAdminMode(false);
+    await loadItems();
+    setNotice("You've signed out. The wishlist remains public.");
   }
 
   const startAdmin = () => {
@@ -560,7 +572,7 @@ export default function Wishlist() {
                   value={draft.name}
                   onChange={e => setDraft({...draft, name: e.target.value})}
                   placeholder="e.g. Cashmere sweater"
-                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
               <label>Store
@@ -569,7 +581,7 @@ export default function Wishlist() {
                   value={draft.store}
                   onChange={e => setDraft({...draft, store: e.target.value})}
                   placeholder="e.g. Simons"
-                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
               <label>Price
@@ -581,7 +593,7 @@ export default function Wishlist() {
                   value={draft.price || ""}
                   onChange={e => setDraft({...draft, price: Number(e.target.value)})}
                   placeholder="0.00"
-                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
               <label className="col-span-2">Product Image URL
@@ -590,7 +602,7 @@ export default function Wishlist() {
                   value={draft.image_url ?? ""}
                   onChange={e => setDraft({...draft, image_url: e.target.value})}
                   placeholder="https://…"
-                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
               <label className="col-span-2">Product Page URL
@@ -599,7 +611,7 @@ export default function Wishlist() {
                   value={draft.product_url ?? ""}
                   onChange={e => setDraft({...draft, product_url: e.target.value})}
                   placeholder="https://…"
-                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-2.75 px-3 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
+                  className="border border-[#d9d1c4] bg-[#fffdf8] rounded-md py-1.75 px-3 m-2 outline-none text-[#273d33] text-[12px] font-light focus:border-[#879987] focus:shadow-[0 0 0 3px rgba(169,181,160,.2)]"
                 />
               </label>
               <label>Preferences
