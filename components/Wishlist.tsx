@@ -24,8 +24,6 @@ import { authClient } from "@/lib/auth-client";
 
 const API_URL = "/api";
 
-const money = (price: number) => price.toFixed(2);
-
 export default function Wishlist() {
   const [items, setItems] = useState<WishlistItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,6 +53,12 @@ export default function Wishlist() {
   const [notice, setNotice] = useState("");
 
   const { data: session } = authClient.useSession();
+
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(price / 100);
 
   const loadItems = useCallback(async () => {
     setLoading(true);
@@ -153,8 +157,10 @@ export default function Wishlist() {
       !draft.name.trim() ||
       !draft.store.trim() ||
       !draft.product_url.trim() ||
-      !Number.isFinite(Number(draft.price)) ||
-      Number(draft.price) < 0
+      draft.price === 0 ||
+        !Number.isFinite(Number(draft.price)) ||
+        Number(draft.price) < 0 ||
+        Number(draft.price) > 99999999
     ) {
       setNotice("Please provide a name, store, valid price, and product URL.");
       return;
@@ -162,10 +168,12 @@ export default function Wishlist() {
 
     setSaving(true);
 
+    const priceInCents = Math.round(Number(draft.price) * 100);
+
     const payload = {
       name: draft.name.trim(),
       store: draft.store.trim(),
-      price: Number(draft.price),
+      price: priceInCents,
       image_url: draft.image_url.trim() || null,
       product_url: draft.product_url.trim() || null,
       preference: draft.preference.trim() || null,
@@ -439,7 +447,7 @@ export default function Wishlist() {
               <div className="pt-4.25 pr-4.25 pb-4.75">
                 <div className="text-[9px] tracking-wider uppercase text-[#9a8059] font-extrabold">{item.store}</div>
                 <h3 className="font-display font-normal text-[#273d33] text-[19px] leading-7 mt-2 mx-0 mb-1.75">{item.name}</h3>
-                <div className="text-[15px] font-extrabold text-[#203c32]">{money(Number(item.price))}</div>
+                <div className="text-[15px] font-extrabold text-[#203c32]">{formatPrice(item.price)}</div>
                 {item.preference && <div className="flex flex-wrap gap-y-1.75 gap-x-3.25 mt-3.25 text-[#667266] text-[10px]">
                   <span>
                     <b className="font-extrabold text-[#44595b] mr-1">Size/Colour</b>
