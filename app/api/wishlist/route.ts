@@ -43,18 +43,26 @@ export async function POST(request: Request) {
       preference,
     } = body;
 
-    if (
-      typeof name !== "string" ||
-      !name.trim() ||
-      typeof store !== "string" ||
-      !store.trim() ||
-      !Number.isSafeInteger(Number(price)) ||
-      Number(price) < 0 ||
-      typeof product_url !== "string" && product_url !== null ||
-      !product_url.trim()
-    ) {
+    const validation = {
+      name: typeof name === "string" && !!name.trim(),
+      store: typeof store === "string" && !!store.trim(),
+      price:
+        price !== null &&
+        price !== undefined &&
+        Number.isSafeInteger(Number(price)) &&
+        Number(price) >= 0,
+      product_url:
+        typeof product_url === "string" && !!product_url.trim(),
+    };
+
+    console.log("[WISHLIST VALIDATION]", validation);
+
+    if (Object.values(validation).some((valid) => !valid)) {
       return NextResponse.json(
-        { message: "Please provide valid product details" },
+        {
+          message: "Please provide valid product details",
+          validation,
+        },
         { status: 400 }
       );
     }
